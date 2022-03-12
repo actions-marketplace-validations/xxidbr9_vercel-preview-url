@@ -44,10 +44,10 @@ In the repository, go to "Settings", then "Secrets" and add "VERCEL_TOKEN", the 
 
 ## Inputs
 
-| Name                | Requirement | Description       |
-| ------------------- | ----------- | ----------------- |
-| `vercel_team_id`    | required    | Vercel team id    |
-| `vercel_project_id` | optional    | Vercel project id |
+| Name                | Requirement | Description               |
+| ------------------- | ----------- | ------------------------- |
+| `vercel_team_id`    | required    | Vercel team id (Username) |
+| `vercel_project_id` | optional    | Vercel project id         |
 
 ## Outputs
 

@@ -1,5 +1,5 @@
 branding:
-  color: black
+  color: "black"
   icon: triangle
 description: 'Receive the deployment preview URL from Vercel'
 inputs:
@@ -7,7 +7,7 @@ inputs:
     description: 'Vercel project id'
     required: false
   vercel_team_id:
-    description: 'Vercel team id'
+    description: 'Vercel team id / username'
     required: true
 name: Vercel Preview URL
 outputs:

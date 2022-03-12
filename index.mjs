@@ -4,9 +4,9 @@ import getDeploymentUrl from './vercel.mjs'
 async function run() {
   try {
     const vercelToken = process.env.VERCEL_TOKEN
-    const githubRef = process.env.GITHUB_REF
+    // https://docs.github.com/en/actions/learn-github-actions/environment-variables
+    const githubBranch = process.env.GITHUB_HEAD_REF
     const githubProject = process.env.GITHUB_REPOSITORY
-    const githubBranch = githubRef.replace('refs/heads/', '')
     const githubRepo = githubProject.split('/')[1]
     const teamId = core.getInput('vercel_team_id')
     const projectId = core.getInput('vercel_project_id')
