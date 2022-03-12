@@ -17,14 +17,16 @@ export default async function getDeploymentUrl(
     projectId
   }
   const qs = querystring.stringify(query)
-
-  core.info(`Fetching from: ${apiUrl}${deploymentsUrl}?${qs}`)
-  const { data } = await axios.get(`${apiUrl}${deploymentsUrl}?${qs}`, {
+  const deployURI = `${apiUrl}${deploymentsUrl}?${qs}`
+  core.info(`Fetching from: ${deployURI}`)
+  const { data } = await axios.get(deployURI, {
     headers: {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json'
     }
   })
+
+  core.debug(`Found ${data.deployments.length} deployments`)
 
   if (!data || !data.deployments || data.deployments.length <= 0) {
     core.error(JSON.stringify(data, null, 2))

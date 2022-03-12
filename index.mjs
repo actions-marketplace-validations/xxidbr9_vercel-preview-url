@@ -11,7 +11,9 @@ async function run() {
     const teamId = core.getInput('vercel_team_id')
     const projectId = core.getInput('vercel_project_id')
 
-    core.info(`Retrieving deployment preview for ${teamId}/${projectId} ...`)
+    core.info(
+      `Retrieving deployment preview from vercel ${teamId}/${projectId} ...`
+    )
     const { url, state } = await getDeploymentUrl(
       vercelToken,
       githubRepo,

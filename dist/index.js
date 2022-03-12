@@ -28,14 +28,16 @@ module.exports = /******/ (() => {
           projectId
         }
         const qs = external_querystring_namespaceObject.stringify(query)
-
-        core.info(`Fetching from: ${apiUrl}${deploymentsUrl}?${qs}`)
-        const { data } = await axios.get(`${apiUrl}${deploymentsUrl}?${qs}`, {
+        const deployURI = `${apiUrl}${deploymentsUrl}?${qs}`
+        core.info(`Fetching from: ${deployURI}`)
+        const { data } = await axios.get(deployURI, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
           }
         })
+
+        core.debug(`Found ${data.deployments.length} deployments`)
 
         if (!data || !data.deployments || data.deployments.length <= 0) {
           core.error(JSON.stringify(data, null, 2))
@@ -70,15 +72,15 @@ module.exports = /******/ (() => {
       async function run() {
         try {
           const vercelToken = process.env.VERCEL_TOKEN
-          const githubRef = process.env.GITHUB_REF
+          // https://docs.github.com/en/actions/learn-github-actions/environment-variables
+          const githubBranch = process.env.GITHUB_HEAD_REF
           const githubProject = process.env.GITHUB_REPOSITORY
-          const githubBranch = githubRef.replace('refs/heads/', '')
           const githubRepo = githubProject.split('/')[1]
           const teamId = core.getInput('vercel_team_id')
           const projectId = core.getInput('vercel_project_id')
 
           core.info(
-            `Retrieving deployment preview for ${teamId}/${projectId} ...`
+            `Retrieving deployment preview from vercel ${teamId}/${projectId} ...`
           )
           const { url, state } = await getDeploymentUrl(
             vercelToken,
