@@ -1,7 +1,10 @@
+name: "vercel-url-action"
+description: "Receive the deployment preview URL from Vercelfrom https://github.com/zentered/vercel-preview-url"
+author: "Barnando Akbarto Hidayatullah <barnando13@gmail.com>"
+
 branding:
   color: "black"
   icon: triangle
-description: 'Receive the deployment preview URL from Vercel'
 inputs:
   vercel_project_id:
     description: 'Vercel project id'
@@ -9,7 +12,7 @@ inputs:
   vercel_team_id:
     description: 'Vercel team id / username'
     required: true
-name: Vercel Preview URL
+    
 outputs:
   deployment_state:
     description: 'A string with the current deployment state, it could be one of the following QUEUED, BUILDING, READY, or ERROR.'
